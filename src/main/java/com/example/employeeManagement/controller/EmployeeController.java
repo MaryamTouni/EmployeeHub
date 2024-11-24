@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.example.employeeManagement.model.Employee;
 import com.example.employeeManagement.service.EmployeeService;
 
@@ -19,10 +20,11 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService service;
-
+	
 	@PostMapping("/employees")
 	public ResponseEntity<Employee> createProduct(@RequestBody Employee employee) {
-		return ResponseEntity.ok().body(service.createEmployee(employee));
+		Employee savedEmployee = service.createEmployee(employee);
+		return ResponseEntity.ok().body(savedEmployee);
 	}
 
 	@GetMapping("/employees/{id}")
